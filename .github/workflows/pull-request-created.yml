@@ -1,0 +1,28 @@
+name: pr_create_ephemeral_environment
+
+on:
+    pull_request:
+        types: [opened, synchronize, ready_for_review, reopened]
+
+jobs:
+    trigger-pr-lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: CircleCI Trigger on Pull Request
+              id: lint_triggered
+              uses: axel-springer-kugawana/trigger-circleci-pipeline-action@v1.0.6
+              with:
+                  GHA_Meta: '${{ github.event.pull_request.url }}'
+              env:
+                  CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
+
+    trigger-ephemeral-creation:
+        runs-on: ubuntu-latest
+        steps:
+            - name: CircleCI Trigger on Pull Request
+              id: ephemeral_environment_created
+              uses: axel-springer-kugawana/trigger-circleci-pipeline-action@v1.0.6
+              with:
+                  GHA_Meta: '${{ github.event.pull_request.url }}'
+              env:
+                  CCI_TOKEN: ${{ secrets.CCI_TOKEN }}

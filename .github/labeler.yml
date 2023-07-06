@@ -1,0 +1,8 @@
+frontend:
+    - 'src/frontend/**/*'
+
+backend:
+    - 'src/backend/**/*'
+
+common-libs:
+    - 'src/common-libs/**/*' 
